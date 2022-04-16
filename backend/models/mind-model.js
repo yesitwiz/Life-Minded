@@ -3,8 +3,26 @@ const Schema = mongoose.Schema
 
 const mindSchema = new Schema (
     {
-        Folder: String,
+        LifeFolders: 
+        {
+            name: String,
+            position: Number
+        },
+
+        subFolders:
+            {
+                name: String,
+                position: Number
+            },
+        
+        todos: 
+            {
+                tasks: String,
+                priority: Number
+            }
+                  
     },
+    
     {timestamps: true}
 )
 
