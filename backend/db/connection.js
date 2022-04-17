@@ -5,7 +5,7 @@ const mongoURI =
     // ? and : ternery operator. ? if this is true, do x. : if this is false, do y
     ? process.env.DB_URL
     : process.env.DEV_DB_URL
-
+console.log(mongoURI)
 mongoose
     .connect(mongoURI)
     .then( (instance) => console.log(`Connected to: ${instance.connections[0].name}`)

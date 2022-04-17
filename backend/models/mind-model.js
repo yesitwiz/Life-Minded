@@ -25,5 +25,6 @@ const mindSchema = new Schema (
     
     {timestamps: true}
 )
+const Mind = mongoose.model('Mind', mindSchema)
 
-module.exports = mindSchema
+module.exports = Mind;

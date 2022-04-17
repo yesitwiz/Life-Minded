@@ -1,0 +1,29 @@
+<header class="d-flex justify-content-between align-items-center">
+    <h1>Life-Minded</h1>
+</header>
+
+<a href="/lm/newLMF" class="btn btn-primary">New Life-Minded Folder</a>
+<a href="/lm/newLMSF" class="btn">New Sub Folder</a>
+
+<ul class="list-group">
+    {{#each data}}
+
+        <li class="list-group-item d-flex justify-content-between">
+
+<div>
+    <h2>{{this.name}}</h2>
+</div>
+
+<div class="links">
+    <a href="/edit/{{this.id}}" class="btn">Edit</a>
+
+<form action="/{{this.id}}?_method=DELETE" method="POST" class="d-inline">
+    <input type="submit" value="Delete" class="btn btn-danger"/>
+</form>
+
+</div>
+</li>
+{{/each}}
+</ul>
+
+<script>console.log("hbs is working")</script>

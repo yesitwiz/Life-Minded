@@ -11,7 +11,6 @@ app.set('view engine', 'hbs')
 app.use("/lm", MindController )
 
 
-
 const port = process.env.PORT || 1116;
 
 app.listen(port, () => {

@@ -1,0 +1,20 @@
+[
+    {
+        "LifeFolders":
+            {
+                "name": "House",
+                "position": 0
+            },
+        "subfolders": 
+            {
+                "name": "Grocery",
+                "position": 0
+            },
+        "todos":
+            {
+                "tasks": ["eggs", "cheese", "bread"]
+            }
+        
+    },
+    {"timestamps": true}
+]
