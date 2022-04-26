@@ -1,6 +1,6 @@
-<h1>New Life-Minded Folder</h1>
+<h1>New Life-Minded Sub Folder</h1>
 
-<form action="/lm/" method="POST">
+<form action="lm/view/:name/newLMSF/" method="POST">
 
     <div class="form-group">
         <label for="name">Name:</label>
@@ -9,4 +9,4 @@
 
     <input type="submit" value="Submit" class="btn"/>
 </form>
-    <a href="/lm" class="btn">Cancel</a>
+    <a href="/lm/view/{{this.id}}" class="btn">Cancel</a>

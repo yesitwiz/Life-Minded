@@ -1,30 +1,35 @@
 const mongoose = require('../db/connection')
-const Schema = mongoose.Schema
+const toJson = require('@meanie/mongoose-to-json');
+const {Schema} = mongoose;
+// const Schema = mongoose.Schema
 
 const mindSchema = new Schema (
     {
-        LifeFolders: 
+        // name: String,
+        LifeFolder: 
         {
             name: String,
-            position: Number
-        },
-
-        subFolders:
-            {
-                name: String,
-                position: Number
-            },
+            subFolder: 
+                {
+                    name: String
+                    // todos: [String]
+                }
         
-        todos: 
-            {
-                tasks: String,
-                priority: Number
-            }
-                  
+        },
+        
+        // subFolder: 
+        // {
+        //     name: String,
+        //     todos: 
+        //         {
+        //             tasks: [String]
+        //         }
+        //     }
+   
     },
-    
     {timestamps: true}
 )
+mindSchema.plugin(toJson);
 const Mind = mongoose.model('Mind', mindSchema)
 
 module.exports = Mind;

@@ -1,11 +1,16 @@
 <h1>Edit</h1>
 
-<form action="/lm/{{data.id}}?_method=PUT" method="POST">
+<form action="/lm/edit/{{data.id}}?_method=POST" method="POST">
+{{!-- {{log data.id}} --}}
     <div class="form-group">
-        <label for="title">Title:</label>
-        <input type="text" id="name" name="name" class="form-control" value="{{data.name}}">
+        <label for="name">Title:</label>
+        <input type="text" id="name" name="name" class="form-control" required value="{{input.name}}">
+        {{log input.name}}
     </div>
 
-    <input type="submit" value="Update Mind Files" class="btn" />
+    <div class="edit-links">
+<a href="/lm" type="submit" value="Update Mind Files" class="btn">Update</a>
+    {{!-- <input type="submit" value="Update Mind Files" class="btn" /> --}}
+    </div>
 </form>
-    <a href="/pokemon" class="btn">Cancel</a>
+    <a href="/lm" class="btn">Cancel</a>
