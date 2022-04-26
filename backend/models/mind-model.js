@@ -10,10 +10,10 @@ const mindSchema = new Schema (
         {
             name: String,
             subFolder: 
-                {
-                    name: String
+                [{
+                    sname: String
                     // todos: [String]
-                }
+                }]
         
         },
         

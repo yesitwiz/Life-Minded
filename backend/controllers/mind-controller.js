@@ -7,7 +7,7 @@ const Mind = require('../models/mind-model')
 //     res.send('Your mind is being controlled muhahaha.')
 // })
 
-router.get('/', (req, res) => {
+router.get('/i', (req, res) => {
     Mind.find({})
     .then((data) => {
         // console.log(data)
@@ -16,23 +16,24 @@ router.get('/', (req, res) => {
     .catch(console.error)
 })
 
-router.get('/view/:name', (req, res) => {
-    // console.log(req.params)
-    let context = {viewFolder: req.params.name}
+router.get('/i/view/:name/:id', (req, res) => {
+    let context = {sname: req.params.name, id: req.params.id}
     res.render('view', context)
 })
 
-//lmf - life-minded folder
-router.get('/newLMF', (req, res) => {
+// lmf - life-minded folder
+router.get('/i/newLMF', (req, res) => {
+    // console.log('get')
     res.render('new')
 })
 
 //lmsf -life-minded sub folder
 //1:32
-router.get('/view/:name/newLMSF', (req, res) => {
-    console.log(req.params)
-    res.render('newSub')
- })
+router.get('/view/:id/new', (req, res) => {
+    // console.log('get view')
+    let context = {id: req.params.id}
+    res.render('newSub', context)
+})
 
 router.get('/edit/:id', (req, res) => {
     const id = req.params.id;
@@ -52,44 +53,52 @@ router.get('/view/edit/:id', (req, res) => {
     .catch(console.error)
 })
 
-
-router.post('/', (req, res) => {
-    //need check req.body.priority. If no value, create.
+  //need check req.body.priority. If no value, create.
     //If value provided, add in req.body(calculate alert time)
     //once day is calc, req.body will take field of remindDate
-    Mind.create(req.body, 
-        {
-            LifeFolder: 
+router.post('/i', (req, res) => {
+    // console.log(req.body)
+    if (req.body.name) {
+        Mind.create(req.body, 
             {
-                name: req.body.name
-            }
-        },
-        // console.log("controller", req.query),
+                LifeFolder: 
+                {
+                    name: req.body.name,
+                }
+            },
+            // console.log("controller", req.query),
+            // {new: true}
+        )
+            .then(() => {
+                res.redirect('/lm/i')
+            })
+            .catch(console.error)
+    }
+
+    if (req.body.sname && req.body.id) 
+    {
+           Mind.findByIdAndUpdate({ _id: req.body.id},
+    {
+        $set:
+        {
+                "LifeFolder.subFolder.sname": req.body.sname
+        }
+    }
+        
         // {new: true}
-    )
+        )
         .then(() => {
-            res.redirect('/lm')
+            res.redirect(`/lm/i/view/${req.body.sname}/${req.body.id}`)
         })
         .catch(console.error)
+    }
+
 })
 
-router.post('/newLMSF', (req, res) => {
-    Mind.create(req.body,
-        {
-            
-            subFolder:
-            {
-                name: req.body.name
-            }
-            
-        },
-        // {new: true}
-    )
-        .then(() => {
-            res.redirect('/lm/view/:id')
-        })
-        .catch(console.error)
-})
+// router.post('/view/name/new', (req, res) => {
+//     console.log('post view')
+//     res.send('this got sent')
+ 
 
 router.put('/edit/:id', (req, res) => {
     Mind.findByIdAndUpdate(req.params.id,
@@ -117,11 +126,11 @@ router.put('view/edit/:id', (req, res) => {
     })
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/i/:id', (req, res) => {
     const id = req.params.id
     Mind.findOneAndRemove({_id: id})
     .then(() => {
-        res.redirect('/lm');
+        res.redirect('/lm/i');
     })
     .catch(console.error)
 })

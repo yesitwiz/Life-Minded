@@ -1,10 +1,13 @@
 <h1>New Life-Minded Sub Folder</h1>
 
-<form action="lm/view/:name/newLMSF/" method="POST">
+{{log LifeFolder.subFolder}}
+<form action="/lm/i/view/{{subFolder.sname}}/{{this.id}}" method="POST">
+ {{!-- {{log this.id}} {{log this.sname}} --}}
 
     <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" class="form-control" value="{{this.name}}">
+        <label for="sname">Name:</label>
+        <input type="hidden" id="id" name="id" value="{{this.id}}">
+        <input type="text" id="sname" name="sname" class="form-control" value="{{this.sname}}">
     </div>
 
     <input type="submit" value="Submit" class="btn"/>

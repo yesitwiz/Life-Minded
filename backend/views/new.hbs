@@ -1,12 +1,13 @@
 <h1>New Life-Minded Folder</h1>
 
-<form action="/lm/" method="POST">
+<form action="/lm/i" method="POST">
 
     <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" class="form-control" value="{{this.name}}">
+        {{!-- {{log this}} --}}
     </div>
 
     <input type="submit" value="Submit" class="btn"/>
 </form>
-    <a href="/lm" class="btn">Cancel</a>
+    <a href="/lm/i" class="btn">Cancel</a>

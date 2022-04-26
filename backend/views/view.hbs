@@ -1,21 +1,22 @@
 {{!-- how to get each folder name to appear --}}
 <div class="entry">
-    <h1>{{viewFolder}} LifeFolder</h1>
+    <h1>{{sname}} LifeFolder</h1>
+    {{!-- {{log this.id}} --}}
 
-    <a href="/lm/view/:name/newLMSF/" class="btn">New Sub Folder</a>
+    <a href="/lm/view/{{this.id}}/new/" class="btn">New Sub Folder</a>
     {{!-- {{log subdata}} --}}
 
 <ul class="list-group">
-    {{#each viewFolder}}
+    {{#each sname}}
 
 
         <li class="list-group-item d-flex justify-content-between">
 
-<div>
+{{!-- <div>
     {{LifeFolder.subFolder}}
-        {{!-- {{log LifeFolder.subFolder.name}} --}}
+        {{log LifeFolder.subFolder}} 
 
-</div>
+</div> --}}
 
 <div class="links">
     
