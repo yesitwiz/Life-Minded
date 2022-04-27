@@ -1,28 +1,30 @@
-{{!-- how to get each folder name to appear --}}
-<div class="entry">
-    <h1>{{sname}} LifeFolder</h1>
-    {{!-- {{log this.id}} --}}
+<header class="d-flex justify-content-between align-items-center">
+    <h1>{{LifeFolder.name}} LifeFolder</h1>
+    {{!-- {{log this}} --}}
+</header>
 
-    <a href="/lm/view/{{this.id}}/new/" class="btn">New Sub Folder</a>
-    {{!-- {{log subdata}} --}}
+<a href="/lm/i/view/{{this.name}}/{{this.id}}/new/" class="btn"> Add {{name}} Sub Folder</a>
 
 <ul class="list-group">
-    {{#each sname}}
-
+    {{log data}}
+    {{#each data}}
+    {{!-- {{log this}} --}}
 
         <li class="list-group-item d-flex justify-content-between">
 
-{{!-- <div>
-    {{LifeFolder.subFolder}}
-        {{log LifeFolder.subFolder}} 
 
-</div> --}}
+<div>
+    <h2>{{this.LifeFolder.name}}</h2>
+        {{!-- {{log LifeFolder.subFolder}}  --}}
+
+</div>
 
 <div class="links">
     
-    <a href="/lm/view/edit/{{this.id}}" class="btn">Edit</a>
+    <a href="/lm/i/view/{{this.name}}/{{this.id}}"
+    <a href="/lm/i/view/edit/{{this.id}}" class="btn">Edit</a>
 
-<form action="/lm/{{this.id}}?_method=DELETE" method="POST" class="d-inline">
+<form action="/lm/i/{{this.id}}?_method=DELETE" method="POST" class="d-inline">
     <input type="submit" value="Delete" class="btn btn-danger"/>
 </form>
 
@@ -30,4 +32,7 @@
 </li>
 {{/each}}
 </ul>
-</div>
+
+<script>console.log("hbs is working")
+    
+</script>

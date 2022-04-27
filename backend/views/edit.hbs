@@ -1,15 +1,15 @@
-<h1>Edit</h1>
+<h1>Edit {{this.name}}</h1>
 
-<form action="/lm/edit/{{data.id}}?_method=POST" method="POST">
+<form action="/lm/i/edit/{{this.name}}/{{this.id}}?_method=POST" method="POST">
 {{!-- {{log data.id}} --}}
     <div class="form-group">
         <label for="name">Title:</label>
-        <input type="text" id="name" name="name" class="form-control" required value="{{input.name}}">
-        {{log input.name}}
+        <input type="text" id="name" name="name" class="form-control" required value="{{this.name}}">
+        {{!-- {{log this}} --}}
     </div>
 
     <div class="edit-links">
-<a href="/lm" type="submit" value="Update Mind Files" class="btn">Update</a>
+<a href="/lm/i" type="submit" value="Update Mind Files" class="btn">Update</a>
     {{!-- <input type="submit" value="Update Mind Files" class="btn" /> --}}
     </div>
 </form>

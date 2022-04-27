@@ -1,15 +1,16 @@
-<h1>New Life-Minded Sub Folder</h1>
+<h1>{{name}} Sub Folder</h1>
 
-{{log LifeFolder.subFolder}}
-<form action="/lm/i/view/{{subFolder.sname}}/{{this.id}}" method="POST">
+
+<form action="/lm/i" method="POST">
  {{!-- {{log this.id}} {{log this.sname}} --}}
 
     <div class="form-group">
         <label for="sname">Name:</label>
         <input type="hidden" id="id" name="id" value="{{this.id}}">
         <input type="text" id="sname" name="sname" class="form-control" value="{{this.sname}}">
+        {{log this.subFolder.sname}}
     </div>
 
     <input type="submit" value="Submit" class="btn"/>
 </form>
-    <a href="/lm/view/{{this.id}}" class="btn">Cancel</a>
+    <a href="/lm/i/view/{{this.name}}/{{this.id}}" class="btn">Cancel</a>

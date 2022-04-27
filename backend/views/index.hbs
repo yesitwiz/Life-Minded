@@ -4,6 +4,8 @@
 
 <a href="/lm/i/newLMF" class="btn btn-primary">New Life-Minded Folder</a>
 
+
+
 <ul class="list-group">
     {{#each data}}
 
@@ -11,19 +13,17 @@
 
 <div>
     <h2>{{this.LifeFolder.name}}</h2>
-        {{!-- {{log LifeFolder}} --}}
 
 </div>
 
 <div class="links">
 
     <a href="/lm/i/view/{{LifeFolder.name}}/{{this.id}}" class="btn">View</a>
-    {{!-- {{log LifeFolder.name}} {{log this.id}} --}}
-    <a href="/lm/edit/{{this.id}}" class="btn">Edit</a>
+    {{log this.id}}
     
+    <a href="/lm/i/edit/{{this.LifeFolder.name}}/{{this.id}}" class="btn">Edit</a>    
 
 <form action="/lm/i/{{this.id}}?_method=DELETE" method="POST" class="d-inline">
-{{!-- {{log this.id}} --}}
     <input type="submit" value="Delete" class="btn btn-danger"/>
 </form>
 

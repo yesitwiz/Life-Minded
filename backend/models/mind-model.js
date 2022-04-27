@@ -8,23 +8,16 @@ const mindSchema = new Schema (
         // name: String,
         LifeFolder: 
         {
+            parent: String,
             name: String,
-            subFolder: 
-                [{
-                    sname: String
-                    // todos: [String]
-                }]
+            category: String,
+            // subFolder: 
+            //     [{
+            //         // sname: String
+            //         // todos: [String]
+            //     }]
         
         },
-        
-        // subFolder: 
-        // {
-        //     name: String,
-        //     todos: 
-        //         {
-        //             tasks: [String]
-        //         }
-        //     }
    
     },
     {timestamps: true}
