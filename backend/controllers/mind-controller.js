@@ -13,7 +13,7 @@ router.get('/i', (req, res) => {
     .catch(console.error)
 })
 
-//show parent folder name + ids
+//show children folder
 router.get('/i/view/:name/:id', (req, res) => {
     let context = {name: req.params.name, id: req.params.id}
     // console.log()
@@ -34,19 +34,10 @@ router.get('/i/view/:name/:id', (req, res) => {
 
         if(data.length == 0)
         {
-        //     console.log('local if hit')
-        // let local = [LifeFolder,
-        // {
-        //     "parent" : req.params.id,
-        //     "parentName" : req.params.name
-        // }]
-        // console.log(local)
-        //put local in data
-        // data.push(local)
         console.log(data, 'if data hit')
         res.render('subView', context)
         return 
-    }
+        }
         // data.concat(context, 'con')
         console.log(data, 'data')
         // [0]["LifeFolder"]["parentName"]
@@ -56,8 +47,56 @@ router.get('/i/view/:name/:id', (req, res) => {
 })
 
 //show todos
+router.get('/i/todoView/:name/:id', (req, res) => {
+        let context= {name: req.params.name, id: req.params.id}
+
+        Mind.find(
+            {
+                "LifeFolder.category":
+                {
+                    $eq: "todos"
+                },
+                "LifeFolder.parent": req.params.id,
+            })
+        .then((data) => {
+            // console.log(data, 'todo view data')
+            if(data.length == 0)
+            {
+            res.render('hiddenTodos', context)
+            return
+            }
+        res.render('todos', {data})
+            })
+        })
+        
+    
+//add todos
 router
-    .route
+    .route('/i/todoAdd/:name/:id/new')
+    .get((req, res) => {
+        let context= {name: req.params.name, id: req.params.id}
+            res.render('newTodo', context)
+    })
+    .post((req, res) => {
+        console.log("post todo hit")
+        Mind.create(req.body,
+            {
+                LifeFolder: 
+                {
+                    //db: form
+                    parent: req.body.id,
+                    parentName: req.body.parentName,
+                    name: req.body.toname,
+                    category: 
+                        "todos",
+                    priority: req.body.priority
+                }
+            })
+        .then(() => {
+            // console.log(req.body.id, 'parent id')
+        res.redirect(`/lm/i/todoView/${req.body.parentName}/${req.body.id}`)
+        })
+    })
 
 //show form for new parent folder
 router.get('/i/newLMF', (req, res) => {

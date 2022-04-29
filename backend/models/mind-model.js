@@ -11,6 +11,7 @@ const mindSchema = new Schema (
             parentName: String,
             name: String,
             category: String,
+            priority: Number
             // subFolder: 
             //     [{
             //         // sname: String

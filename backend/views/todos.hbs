@@ -1,24 +1,27 @@
 <header class="d-flex justify-content-between align-items-center">
-    <h1>{{data.0.LifeFolder.parentName}} LifeFolder</h1>
+    <h1>{{data.0.LifeFolder.parentName}} Folder</h1>
 </header>
-
-<a href="/lm/i/todoView/{{data.0.LifeFolder.parentName}}/{{data.0.LifeFolder.parent}}/new/" class="btn"> Add {{data.0.LifeFolder.parentName}} Sub Folder</a>
+<a href="/lm/i/todoAdd/{{data.0.LifeFolder.parentName}}/{{data.0.LifeFolder.parent}}/new/" class="btn"> Add {{this.name}} todos</a>
 
 <ul class="list-group">
    
     {{#each data}}
 
         <li class="list-group-item d-flex justify-content-between">
+{{log this.LifeFolder}}
 
-
-<div>
+<div class="select">
     <h2>{{this.LifeFolder.name}}</h2>
+        {{#if this.LifeFolder.priority}}
+    <span style="color: blue"> <b>Important
+  </b></span>
+  {{/if}}
 </div>
 
 <div class="links">
-        <a href="/lm/i/view/{{this.name}}/{{this.id}}" class="btn">View</a>
+        {{!-- <a href="/lm/i/view/{{this.name}}/{{this.id}}" class="btn">View</a> --}}
     <a href="/lm/i/view/edit/{{this.LifeFolder.name}}/{{this.id}}" class="btn">Edit</a>
-<form action="/lm/i/{{this.id}}?_method=DELETE" method="POST" class="d-inline">
+<form action="/lm/i/todoView/{{this.LifeFolder.name}}?_method=DELETE" method="POST" class="d-inline">
     <input type="submit" value="Delete" class="btn btn-danger"/>
 </form>
 
