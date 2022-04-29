@@ -5,10 +5,10 @@ const {Schema} = mongoose;
 
 const mindSchema = new Schema (
     {
-        // name: String,
         LifeFolder: 
         {
             parent: String,
+            parentName: String,
             name: String,
             category: String,
             // subFolder: 
