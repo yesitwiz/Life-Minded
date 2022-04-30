@@ -1,7 +1,6 @@
 const mongoose = require('../db/connection')
 const toJson = require('@meanie/mongoose-to-json');
 const {Schema} = mongoose;
-// const Schema = mongoose.Schema
 
 const mindSchema = new Schema (
     {
@@ -12,12 +11,7 @@ const mindSchema = new Schema (
             name: String,
             category: String,
             priority: Number
-            // subFolder: 
-            //     [{
-            //         // sname: String
-            //         // todos: [String]
-            //     }]
-        
+      
         },
    
     },

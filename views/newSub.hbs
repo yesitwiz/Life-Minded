@@ -1,14 +1,11 @@
 <h1>{{name}} Sub Folder</h1>
-{{log this.name}}
 
 <form action="/lm/i" method="POST">
- {{!-- {{log this.id}} {{log this.sname}} --}}
     <div class="form-group">
         <label for="name">Name:</label>
         <input type="hidden" id="id" name="id" value="{{this.id}}">
         <input type="hidden" id="parentName" name="parentName" value="{{this.name}}">
         <input type="text" id="sname" name="sname" class="form-control" value="{{this.sname}}">
-        {{!-- {{log this.subFolder.sname}} --}}
     </div>
 
     <input type="submit" value="Submit" class="btn"/>

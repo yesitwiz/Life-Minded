@@ -7,7 +7,6 @@ const Mind = require('../models/mind-model')
 router.get('/i', (req, res) => {
     Mind.find({ "LifeFolder.category": {$eq: 'Life'}})
     .then((data) => {
-        // console.log(data)
         res.render('index', {data})
     })
     .catch(console.error)
@@ -16,7 +15,6 @@ router.get('/i', (req, res) => {
 //show children folder
 router.get('/i/view/:name/:id', (req, res) => {
     let context = {name: req.params.name, id: req.params.id}
-    // console.log()
 
     Mind.find( 
         {
@@ -25,21 +23,14 @@ router.get('/i/view/:name/:id', (req, res) => {
                  $eq:"subFolder"
             }, 
             "LifeFolder.parent": req.params.id,
-            // "LifeFolder.parentName": req.params.name
         })
     .then((data) => {
-        console.log(data.length)
-        // let both['context'] = context
 
         if(data.length == 0)
         {
-        console.log(data, 'if data hit')
         res.render('subView', context)
         return 
         }
-        // data.concat(context, 'con')
-        console.log(data, 'data')
-        // [0]["LifeFolder"]["parentName"]
     res.render('view', {data})
 })
 .catch(console.error)
@@ -58,7 +49,6 @@ router.get('/i/todoView/:name/:id', (req, res) => {
                 "LifeFolder.parent": req.params.id,
             })
         .then((data) => {
-            // console.log(data, 'todo view data')
             if(data.length == 0)
             {
             res.render('hiddenTodos', context)
@@ -66,7 +56,7 @@ router.get('/i/todoView/:name/:id', (req, res) => {
             }
         res.render('todos', {data})
             })
-        })
+})
         
     
 //add todos
@@ -77,7 +67,6 @@ router
             res.render('newTodo', context)
     })
     .post((req, res) => {
-        console.log("post todo hit")
         Mind.create(req.body,
             {
                 LifeFolder: 
@@ -92,7 +81,6 @@ router
                 }
             })
         .then(() => {
-            // console.log(req.body.id, 'parent id')
         res.redirect(`/lm/i/todoView/${req.body.parentName}/${req.body.id}`)
         })
 })
@@ -119,15 +107,11 @@ router
     .route('/i/edit/:name/:id')
     .get ((req, res) => {
         let context1 = {name: req.params.name, id: req.params.id}
-        // console.log('main edit get')
-        // console.log(req.params.name, 'params') defined
-        // console.log(req.body.name, 'body') undefined
+
             res.render('edit', context1)
     })
     .post((req, res) => {
-        console.log('hitting put edit')
         let context2= {name: req.body.name, id: req.params.id}
-        console.log(req.params.id, req.params.name )
         Mind.findByIdAndUpdate(req.params.id,
             {
                 $set: 
@@ -139,22 +123,17 @@ router
             {new: true, upsert: false}
             )
     .then((data) => {
-        console.log(data, 'then data')
         res.render('edit', context2)
     })    
 });
 
 //secondary page edit to sub folders
 router.get ('/i/view/edit/:name/:id', (req, res) => {
-console.log('view edit form')
 let context1 = {name: req.params.name, id: req.params.id}
-// console.log
         res.render('edit', context1)
 })
 
 router.post('/i/view/edit/:name/:id', (req,res) => {
-        // console.log(req)
-        console.log('view edit post hit')
         let context2= {name: req.body.name, id: req.params.id}
 
          Mind.findByIdAndUpdate(req.params.id, 
@@ -185,7 +164,6 @@ router.post('/i', (req, res) => {
                         "Life"
                 }
             },
-            // console.log("controller", req.query),
             // {new: true}
         )
             .then(() => {
@@ -197,10 +175,6 @@ router.post('/i', (req, res) => {
     //this creates a subfolder
     if (req.body.sname && req.body.id) 
     {
-        // console.log('i\'m hitting sub')
-        console.log('body', req.body.sname)
-        console.log('params', req.params.sname)
-
         Mind.create(req.body,
             {
                 LifeFolder: 

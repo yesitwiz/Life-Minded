@@ -1,16 +1,12 @@
 <h1>Edit {{this.name}}</h1>
-{{log this}}
 
 <form action="/lm/i/edit/{{this.name}}/{{this.id}}?_method=POST" method="POST">
-{{!-- {{log data.id}} --}}
     <div class="form-group">
         <label for="name">Title:</label>
         <input type="text" id="name" name="name" class="form-control" required value="{{this.name}}">
-        {{!-- {{log this}} --}}
     </div>
 
     <div class="edit-links">
-{{!-- <a href="/lm/i" type="submit" value="Update Mind Files" class="btn">Update</a> --}}
     <button type="submit" value="Update Mind Files" class="btn">Update file</button>
     </div>
 </form>

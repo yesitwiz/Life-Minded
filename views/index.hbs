@@ -7,22 +7,18 @@
 
 
 <ul class="list-group">
-    {{!-- {{log data}} --}}
     {{#each data}}
 
         <li class="list-group-item d-flex justify-content-between">
 
 <div>
     <h2>{{this.LifeFolder.name}}</h2>
- {{!--{{log this.LifeFolder.name}} 
-reads correctly--}}
+
 </div>
 
 <div class="links">
 
     <a href="/lm/i/view/{{LifeFolder.name}}/{{this.id}}" class="btn">View</a>
-{{!-- {{log this.LifeFolder.name}}    {{log this.id}}  --}}
-{{!-- logs each life folder with corresponding id--}}
 
     <a href="/lm/i/edit/{{this.LifeFolder.name}}/{{this.id}}" class="btn">Edit</a>    
 

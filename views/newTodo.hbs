@@ -2,7 +2,7 @@
 {{log this.name}}
 
 <form action="/lm/i/todoAdd/{{this.name}}/{{this.id}}/new" method="POST">
- {{!-- {{log this.id}} {{log this.sname}} --}}
+
     <div class="form-group">
         <label for="name">Name:</label>
         <input type="hidden" id="id" name="id" value="{{this.id}}">
@@ -13,11 +13,9 @@
     <div class="select">
         <input type="radio" id="priority1" name="priority" value="1">
         <label for="priority1">Important</label>
-        {{!-- <input type="radio" id="priority2" name="priority" value="2">
-        <label for="priority2">2 days</label> --}}
+      
     </div>
 
-        {{!-- {{log this.subFolder.sname}} --}}
     </div>
 
     <input type="submit" value="Submit" class="btn"/>
