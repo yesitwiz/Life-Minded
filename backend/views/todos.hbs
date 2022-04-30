@@ -1,14 +1,14 @@
 <header class="d-flex justify-content-between align-items-center">
     <h1>{{data.0.LifeFolder.parentName}} Folder</h1>
 </header>
-<a href="/lm/i/todoAdd/{{data.0.LifeFolder.parentName}}/{{data.0.LifeFolder.parent}}/new/" class="btn"> Add {{this.name}} todos</a>
+<a href="/lm/i/todoAdd/{{data.0.LifeFolder.parentName}}/{{data.0.LifeFolder.parent}}/new/" class="btn"> Add {{data.0.LifeFolder.parentName}} todos</a>
 
 <ul class="list-group">
    
     {{#each data}}
 
         <li class="list-group-item d-flex justify-content-between">
-{{log this.LifeFolder}}
+{{!-- {{log this.LifeFolder}} --}}
 
 <div class="select">
     <h2>{{this.LifeFolder.name}}</h2>
@@ -21,7 +21,8 @@
 <div class="links">
         {{!-- <a href="/lm/i/view/{{this.name}}/{{this.id}}" class="btn">View</a> --}}
     <a href="/lm/i/view/edit/{{this.LifeFolder.name}}/{{this.id}}" class="btn">Edit</a>
-<form action="/lm/i/todoView/{{this.LifeFolder.name}}?_method=DELETE" method="POST" class="d-inline">
+<form action="/lm/i/{{this.id}}?_method=DELETE" method="POST" class="d-inline">
+{{!-- todoView/{{this.LifeFolder.name}}/{{this.id}} --}}
     <input type="submit" value="Delete" class="btn btn-danger"/>
 </form>
 

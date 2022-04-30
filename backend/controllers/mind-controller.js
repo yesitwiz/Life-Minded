@@ -258,4 +258,19 @@ router.delete('/i/:id', (req, res) => {
     })
     .catch(console.error)
 })
+
+// router.delete('/i/todoView/:name/:id', (req, res) => {
+//     const id = req.params.id
+//     Mind.findOneAndRemove(
+//         {
+//             _id: id,
+//             "data.LifeFolder.parentName": req.params.name
+//         })
+//     .then(() => {
+//         console.log(req.body.name, 'par name')
+//         res.redirect(`/i/todoView/${req.params.name}`);
+//     })
+//     .catch(console.error)
+// })
+
 module.exports = router
