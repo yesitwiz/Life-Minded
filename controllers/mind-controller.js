@@ -27,7 +27,6 @@ router.get('/i/view/:name/:id', (req, res) => {
             "LifeFolder.parent": req.params.id,
             // "LifeFolder.parentName": req.params.name
         })
-    // Mind.find({_id:req.params.id}, { projection: { _id: 0, "subFolder.sname": 1} }.toArray)
     .then((data) => {
         console.log(data.length)
         // let both['context'] = context
@@ -96,7 +95,8 @@ router
             // console.log(req.body.id, 'parent id')
         res.redirect(`/lm/i/todoView/${req.body.parentName}/${req.body.id}`)
         })
-    })
+})
+
 
 //show form for new parent folder
 router.get('/i/newLMF', (req, res) => {
@@ -104,8 +104,8 @@ router.get('/i/newLMF', (req, res) => {
     res.render('new')
 })
 
-//show form for child folder while it being attached to parent folder
-//1:32
+//life sub folder
+
 router.get('/i/view/:name/:id/new', (req, res) => {
         let context = {
         name: req.params.name, 
@@ -113,12 +113,8 @@ router.get('/i/view/:name/:id/new', (req, res) => {
     }
     res.render('newSub', context)
 })
-
-// router.get('/i/edit/:name/:id', (req, res) => {
-//     let context = {name: req.params.name, id: req.params.id}
-//         res.render('edit', context)
-//     })
  
+//main page edits to life folders
 router
     .route('/i/edit/:name/:id')
     .get ((req, res) => {
@@ -148,6 +144,7 @@ router
     })    
 });
 
+//secondary page edit to sub folders
 router.get ('/i/view/edit/:name/:id', (req, res) => {
 console.log('view edit form')
 let context1 = {name: req.params.name, id: req.params.id}
@@ -176,11 +173,8 @@ router.post('/i/view/edit/:name/:id', (req,res) => {
 
 
 
-  //need check req.body.priority. If no value, create.
-    //If value provided, add in req.body(calculate alert time)
-    //once day is calc, req.body will take field of remindDate
 router.post('/i', (req, res) => {
-    // console.log('i post')
+    // this create a new lifefolder
     if (req.body.name) {
         Mind.create(req.body, 
             {
@@ -198,8 +192,9 @@ router.post('/i', (req, res) => {
                 res.redirect('/lm/i')
             })
             .catch(console.error)
-    }
+}
 
+    //this creates a subfolder
     if (req.body.sname && req.body.id) 
     {
         // console.log('i\'m hitting sub')
@@ -228,28 +223,6 @@ router.post('/i', (req, res) => {
 
 })
 
-// router.post('/view/name/new', (req, res) => {
-//     console.log('post view')
-//     res.send('this got sent')
- 
-
-// router.put('/i/edit/:name/:id', (req, res) => {
-//     Mind.findByIdAndUpdate(req.params.id,
-//         {
-//             LifeFolder: 
-//             {
-//                 name: req.body.name
-//             }
-//         },
-//         // {new: true}
-//     )
-//      .then(() => {
-//          res.redirect('/lm/i')
-//      })   
-//      .catch(console.error)
-// })
-
-
 router.delete('/i/:id', (req, res) => {
     const id = req.params.id
     Mind.findOneAndRemove({_id: id})
@@ -258,6 +231,12 @@ router.delete('/i/:id', (req, res) => {
     })
     .catch(console.error)
 })
+
+module.exports = router
+
+
+
+
 
 // router.delete('/i/todoView/:name/:id', (req, res) => {
 //     const id = req.params.id
@@ -272,5 +251,3 @@ router.delete('/i/:id', (req, res) => {
 //     })
 //     .catch(console.error)
 // })
-
-module.exports = router
