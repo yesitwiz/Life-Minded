@@ -16,7 +16,9 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(bodyparser.urlencoded({extended:false}))
 app.use(bodyparser.json())
-
+app.get('/', (req, res) => {
+    res.redirect('/lm/i')
+})
 app.use("/lm", MindController )
 
 
